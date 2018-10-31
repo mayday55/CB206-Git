@@ -16,7 +16,7 @@ pr = sqrt(px.^2 + py.^2);
 aperture = exp(-4 * pr.^2);
 aperture = aperture .* (1 + erf(10 * (pr - annulusPix / width)));
 
-blur = 30;
+blur = 20;
 [xx, yy] = meshgrid(linspace(-2,2,blur));
 kernel = normpdf(sqrt(xx.^2 + yy.^2));
 
