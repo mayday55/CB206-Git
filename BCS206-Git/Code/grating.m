@@ -25,8 +25,13 @@ img = zeros(frames, width, width);
 for f=1:frames
     % Times contrast here because we do not want the noise change with the contrast
     Z = sin(sf*(px+py*rotation(f)))*contrast; 
+<<<<<<< HEAD
     %add the noise first then cut out annulus
     white_noise = normrnd(0,1,width);
+=======
+    white_noise = normrnd(0,1,width);
+    % using the line below to generate band-pass filtered noise
+>>>>>>> 63e050e79137f23f09365553da674ff0dd537aa8
     blurred_noise = conv2(white_noise, kernel, 'same'); 
     Z = Z + noise*blurred_noise;
 %    Z = reshape(Z,[width,width]);
@@ -40,9 +45,13 @@ end
 % Normalize into range [-1, 1]
 % img = img / max(abs(img(:)));
 
+<<<<<<< HEAD
 %colormap(gray);
 %axis image;
 %axis('off');
+=======
+%colormap(gray);axis image;axis('off');
+>>>>>>> 63e050e79137f23f09365553da674ff0dd537aa8
 %imagesc(img);  
 
 

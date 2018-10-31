@@ -43,11 +43,22 @@ total_trials = GaborData.trials_per_block * GaborData.blocks;
 
 % Initial values of staircase-able parameters
 GaborData.contrast = zeros(1, total_trials);
+<<<<<<< HEAD
 GaborData.contrast(1) = get_arg('contrast', 1);
 GaborData.ratio = zeros(1, total_trials);
 GaborData.ratio(1) = get_arg('ratio', 1.0);
 GaborData.noise = zeros(1, total_trials);
 GaborData.noise(1) = get_arg('noise', 10); % std of variance of noise added pixelwise
+=======
+GaborData.contrast(1) = get_arg('contrast', 16);
+% changed contrast from 1 to 16 - not scaling up the variance anywhere
+% outside of newGaborData -LL
+GaborData.ratio = zeros(1, total_trials);
+GaborData.ratio(1) = get_arg('ratio', 1.0);
+GaborData.noise = zeros(1, total_trials);
+GaborData.noise(1) = get_arg('noise', 3); % std of variance of noise added pixelwise
+% changed noise from 10 to 3 - too large even at the first trial -LL
+>>>>>>> 63e050e79137f23f09365553da674ff0dd537aa8
 GaborData.step_size = zeros(1, total_trials);
 
 % Staircase bounds and step size, with defaults set depending on stair_fn

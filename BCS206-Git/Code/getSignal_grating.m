@@ -44,4 +44,11 @@ for f=1:frames
     I = reshape(im(f,:,:), [px, 1]);
     sig(f) = double(I)' * Cinv * double(template(:));
 end
+<<<<<<< HEAD
+=======
+
+disp('running getSignal()... sig =');
+disp(sig);
+
+>>>>>>> 63e050e79137f23f09365553da674ff0dd537aa8
 end
