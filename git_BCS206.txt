@@ -1,0 +1,11 @@
+git pull https://github.com/mayday55/CB206-Git
+
+
+git branch rig
+git checkout rig
+git add .
+git commit -m "comment"
+git push origin rig
+
+repo: 
+https://github.com/mayday55/CB206-Git
