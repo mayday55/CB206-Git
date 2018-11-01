@@ -1,0 +1,22 @@
+cd Documents/MATLAB/BCS206
+
+git add *
+git commit -m "comment"
+git push origin rig
+
+
+# note: sometimes there is a error in the "push" step. If I use "git branch rig2" to create a new branch and push to that branch, it works. (see below) 
+
+git pull https://github.com/mayday55/CB206-Git
+
+
+
+
+git branch rig
+git checkout rig
+git add .
+git commit -m "comment"
+git push origin rig
+
+repo: 
+https://github.com/mayday55/CB206-Git
