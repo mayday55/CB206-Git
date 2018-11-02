@@ -213,10 +213,10 @@ try
         GaborData.checksum(trial) = checksum;
         
         % Record answer of the ideal observer.
-        template_contrast = max(GaborData.contrast(trial), 1);
+%         template_contrast = max(GaborData.contrast(trial), 1);
         GaborData.ideal_frame_signals(trial, :) = ...
-            getSignal_grating(image_array - 127, GaborData.noise(trial), template_contrast * left_template_raw) - ...
-            getSignal_grating(image_array - 127, GaborData.noise(trial), template_contrast * right_template_raw);
+            bpg.getSignal(image_array - 127, GaborData.left_category,0.04) - ...
+            bpg.getSignal(image_array - 127, GaborData.right_category,0.04);
         GaborData.ideal_answer(trial) = 1 * (sum(GaborData.ideal_frame_signals(trial, :)) > 0);
         
         if isempty(GaborData.model_observer)

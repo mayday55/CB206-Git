@@ -46,17 +46,11 @@ rng(GaborData.seed(trial), 'twister');
 %     image_array = [image_array, i];
 % end
 
-image_array = stim_fcn(frame_categories, GaborData.noise(trial),  GaborData.contrast(trial), GaborData.number_of_images);
-disp('noise: ');
-disp([trial GaborData.noise(trial)]);
+image_array = stim_fcn(frame_categories,0.03,  GaborData.contrast(trial), GaborData.number_of_images);
+
 image_array = uint8(image_array + 127);
 image_array = min(image_array, 255);
 image_array = max(image_array, 0);
-disp('contrast ');
-disp([trial GaborData.contrast(trial)]);
-disp('image array: ');
-disp([trial image_array(trial)]);
-disp([frame_categories]);
 
 
 checksum = mean(image_array(:));
