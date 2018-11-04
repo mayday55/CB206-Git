@@ -6,6 +6,11 @@ git push origin rig
 
 
 # note: sometimes there is a error in the "push" step. If I use "git branch rig2" to create a new branch and push to that branch, it works. (see below) 
+actually, when this happens, try the following: (LL, 1102)
+>> git pull origin rig2
+# in order to integrate changes in the remote
+
+
 
 git pull https://github.com/mayday55/CB206-Git
 
@@ -18,5 +23,6 @@ git add .
 git commit -m "comment"
 git push origin rig
 
-repo: 
+repository:
+ 
 https://github.com/mayday55/CB206-Git
