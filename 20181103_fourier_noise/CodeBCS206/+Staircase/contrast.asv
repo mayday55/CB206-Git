@@ -44,6 +44,11 @@ end
 
 %% Apply staircase logic
 
+if trial <= 100
+    GaborData.step_size(trial) = get_arg('step_size', 2); % multiplicative (in the "easier" direction)
+else
+    Gabor
+
 if GaborData.streak(trial) == 0
     % Got it wrong - make things easier
     GaborData.contrast(trial) = ...

@@ -34,7 +34,7 @@ end
 
 %% User-settable params
 GaborData.trials_per_block = get_arg('trials_per_block', 100);
-GaborData.blocks = get_arg('blocks', 8); % can manually set this to 9 when running ExperimentGabor(newGaborData, "blocks", 9)
+GaborData.blocks = get_arg('blocks', 8); 
 % GaborData.stair_fn = get_arg('stair_fn', @Staircase.ratio); % comment this out for contrast condition
 GaborData.stair_fn = get_arg('stair_fn', @Staircase.contrast); % comment this out for ratio condition
 GaborData.reversals_per_epoch = get_arg('reversals_per_epoch', 6);

@@ -163,14 +163,6 @@ try
             
             % set up the first block to be easy: stair step is small -LL
             
-
-            % Start of a block - set params to initial values.
-            GaborData.streak(trial) = 0;
-            GaborData.reversal_counter(trial) = 0;
-            GaborData.contrast(trial) = GaborData.contrast(1);
-            GaborData.ratio(trial) = GaborData.ratio(1);
-            GaborData.noise(trial) = GaborData.noise(1);
-            
             if isequal(GaborData.stair_fn, @Staircase.contrast) % only for the contrast condition
                 if trial == 1
                     disp(test_step_size);
@@ -178,20 +170,18 @@ try
                     GaborData.min_step_size = 1+(GaborData.step_size(trial) - 1)/4;
                 elseif trial == 1 + GaborData.trials_per_block
                     disp('reset step size');
-                    disp(trial);
                     GaborData.step_size(trial) = test_step_size;
-                    disp(test_step_size);
-                    disp(GaborData.step_size(trial));
                     GaborData.min_step_size = test_min_step_size;
-                    disp(GaborData.min_step_size);
-                    disp(test_min_step_size);
-                else
-                    GaborData.step_size(trial) = test_step_size;
                 end
             end
             
-            
-
+            % Start of a block - set params to initial values.
+            GaborData.streak(trial) = 0;
+            GaborData.reversal_counter(trial) = 0;
+            GaborData.contrast(trial) = GaborData.contrast(1);
+            GaborData.ratio(trial) = GaborData.ratio(1);
+            GaborData.noise(trial) = GaborData.noise(1);
+            GaborData.step_size(trial) = GaborData.step_size(1);
             if isfield(GaborData, 'iid')
                 GaborData.iid(trial) = GaborData.iid(1);
             end
