@@ -30,14 +30,26 @@ GaborData.noise(trial) = GaborData.noise(trial-1);
 prev_reversals = GaborData.reversal_counter(trial-1);
 reversals = GaborData.reversal_counter(trial);
 m = GaborData.reversals_per_epoch;
-if reversals > 0 && mod(reversals, m) == 0 && mod(prev_reversals, m) ~= 0
+
+% if trial < 100
+%     if reversals > 0 && mod(reversals, m) == 0 && mod(prev_reversals, m) ~= 0
+%     % Decay the step size half way towards 1
+%      GaborData.step_size(trial)=1+ 0.9*(GaborData.step_size(trial-1)-1);
+%     else
+%     % Same step size as last trial
+%     GaborData.step_size(trial) = GaborData.step_size(trial-1);
+%     end
+% else
+% if trial >100
+    if reversals > 0 && mod(reversals, m) == 0 && mod(prev_reversals, m) ~= 0
     % Decay the step size half way towards 1
     GaborData.step_size(trial) = 1 + 0.5 * (GaborData.step_size(trial-1) - 1);
-else
+    else
     % Same step size as last trial
     GaborData.step_size(trial) = GaborData.step_size(trial-1);
-end
-
+    end
+    
+% end
 if GaborData.step_size(trial) < GaborData.min_step_size
     GaborData.step_size(trial) = GaborData.min_step_size;
 end
@@ -58,6 +70,8 @@ GaborData.contrast(trial) = ...
     max(GaborData.contrast(trial), GaborData.stair_bounds(1));
 GaborData.contrast(trial) = ...
     min(GaborData.contrast(trial), GaborData.stair_bounds(2));
+
+disp(GaborData.contrast(trial));
 
 %% Handle special 'test' condition
 % (using the 'test_ratio' and shuffling frames rather than iid).

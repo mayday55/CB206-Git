@@ -107,7 +107,7 @@ GaborData.ideal_frame_signals = zeros(total_trials, GaborData.number_of_images);
 GaborData.seed = randi(1000000000, 1, total_trials);
 GaborData.checksum = zeros(1, total_trials);  % For sanity-checks on seeds
 GaborData.correct_answer = 1 * rand(1, total_trials) < .5;
-
+%GaborData.phase = 2*pi + rand(1, total_trials);
 GaborData.current_trial = 0;
 
 GaborData.eye_tracker_points = {};

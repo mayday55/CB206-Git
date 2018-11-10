@@ -29,7 +29,7 @@ if isempty(GaborData.model_observer)
     whichScreen = settings.whichScreen; %allow to choose the display if there's more than one
     xc = settings.screenSize(3)/2; %	Gets the middle of the horizontal axis
     yc = settings.screenSize(4)/2; % Gets the middle of the vertical axis
-    Screen('Preference', 'SkipSyncTests', settings.ptbSkipSyncTests); % Opens Screen - LL
+    Screen('Preference', 'SkipSyncTests', 1); % Opens Screen - LL
     
     white = [255 255 255];          % Sets the color to be white
     black = [0 0 0];                % Sets the color to be black
