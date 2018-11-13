@@ -13,6 +13,7 @@ broke_fixation = false;
 %% Make sure to have left/right patch to match the orientations used
 
 % Create images to be displayed as left or right options
+
 left_patch = squeeze(grating([Data.left_category], 0, 1,1)) * 64.0 + 127.0;
 right_patch = squeeze(grating([Data.right_category], 0, 1,1)) * 64.0 + 127.0;
 
@@ -104,6 +105,7 @@ Screen('Flip', wPtr, endTime + Data.go_cue_time);
 
 Screen('DrawTexture', wPtr, show_left_patch, [], ptbCenteredRect([xc-w yc], [w h]));   % xc, yc indicates the coordinates of the middle of the screen
 Screen('DrawTexture', wPtr, show_right_patch, [], ptbCenteredRect([xc+w yc], [w h]));
+drawFixationSymbol(wPtr,settings);
 %Screen('DrawText', wPtr, sprintf('Current Trial - #%d', Data.current_trial), xc-600, yc+250, 0);   % Unobtrusive output to screen of the current trial number
 Screen('Flip', wPtr);
 

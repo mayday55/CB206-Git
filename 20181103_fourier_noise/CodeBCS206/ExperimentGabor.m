@@ -100,7 +100,9 @@ if isempty(GaborData.model_observer)
     templatey = (textbox(4) + settings.screenSize(4)) / 2;
     Screen('DrawTexture', wPtr, left_tex, [], ptbCenteredRect([xc-w templatey], [w h]));
     Screen('DrawTexture', wPtr, right_tex, [], ptbCenteredRect([xc+w templatey], [w h]));
+    drawFixationSymbol(wPtr,settings);
     Screen('Flip', wPtr); % Function to flip to the next screen image
+    
     if ptbWaitKey([goKey exitKey]) == exitKey
         Screen('CloseAll');
         return;
