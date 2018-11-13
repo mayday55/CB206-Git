@@ -34,7 +34,7 @@ end
 
 %% User-settable params
 GaborData.trials_per_block = get_arg('trials_per_block', 100);
-GaborData.blocks = get_arg('blocks', 4);
+GaborData.blocks = get_arg('blocks', 8); % can manually set this to 9 when running ExperimentGabor(newGaborData, "blocks", 9)
 % GaborData.stair_fn = get_arg('stair_fn', @Staircase.ratio); % comment this out for contrast condition
 GaborData.stair_fn = get_arg('stair_fn', @Staircase.contrast); % comment this out for ratio condition
 GaborData.reversals_per_epoch = get_arg('reversals_per_epoch', 6);
@@ -103,10 +103,11 @@ GaborData.ideal_frame_signals = zeros(total_trials, GaborData.number_of_images);
 
 % Note that 'seed' and 'correct_answer' must be preset due to esoteric
 % properties of random number generators. GaborStimulus will read out these
-% preset values.
+% preset values.g
 GaborData.seed = randi(1000000000, 1, total_trials);
 GaborData.checksum = zeros(1, total_trials);  % For sanity-checks on seeds
 GaborData.correct_answer = 1 * rand(1, total_trials) < .5;
+GaborData.phase = 2*pi * rand(1, total_trials);
 
 GaborData.current_trial = 0;
 

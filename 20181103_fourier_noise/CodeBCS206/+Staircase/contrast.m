@@ -43,6 +43,7 @@ if GaborData.step_size(trial) < GaborData.min_step_size
 end
 
 %% Apply staircase logic
+
 if GaborData.streak(trial) == 0
     % Got it wrong - make things easier
     GaborData.contrast(trial) = ...

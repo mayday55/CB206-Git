@@ -34,7 +34,7 @@ if isempty(GaborData.model_observer)
     white = [255 255 255];          % Sets the color to be white
     black = [0 0 0];                % Sets the color to be black
     
-    % Screen('Preference', 'SkipSyncTests', 1) % use with causion -LL
+    Screen('Preference', 'SkipSyncTests', 1) % use with causion -LL
     [wPtr, ~] = Screen('OpenWindow', whichScreen, black, [], 32); % Opens window, sets background as black, sets screensize
     HideCursor(whichScreen);
     
@@ -42,16 +42,7 @@ if isempty(GaborData.model_observer)
         gtdata = load(settings.gammaTableFile);
         Screen('LoadNormalizedGammaTable', wPtr, gtdata.(settings.gammaTable)*[1 1 1]);
     end
-    
-    % Set up eye tracker, passing through any remaining varargin
-%     tracker_info = EyeTracker.initEyeTracker(whichScreen, ...
-%         'fixationSymbol', '+', ...
-%         'fixationCenter', [xc, yc], ...
-%         'fixationSymbolSize', [20 20], ...
-%         'fixationSymbolColors', [180 180 180], ...
-%         'fixationRadius', 18, ...
-%         varargin{:});
-%     
+      
      % Set up keyboard functions
      KbName('UnifyKeyNames');
      goKey = KbName(settings.keyGo);
@@ -109,7 +100,9 @@ if isempty(GaborData.model_observer)
     templatey = (textbox(4) + settings.screenSize(4)) / 2;
     Screen('DrawTexture', wPtr, left_tex, [], ptbCenteredRect([xc-w templatey], [w h]));
     Screen('DrawTexture', wPtr, right_tex, [], ptbCenteredRect([xc+w templatey], [w h]));
+    drawFixationSymbol(wPtr,settings);
     Screen('Flip', wPtr); % Function to flip to the next screen image
+    
     if ptbWaitKey([goKey exitKey]) == exitKey
         Screen('CloseAll');
         return;
@@ -130,6 +123,10 @@ seen_block_notification = false;
 trial = 1;
 block_trial = 1;
 block = 1;
+
+% copy parameters to read later
+test_step_size = GaborData.step_size(1); 
+test_min_step_size = GaborData.min_step_size; 
 
 % Using 'while' rather than 'for' since invalid trials (broke fixation or
 % didn't respond in time) don't increment 'trial'.
@@ -166,13 +163,37 @@ try
                 end
             end
             
+            % set up the first block to be easy: stair step is small -LL
+            
+
             % Start of a block - set params to initial values.
             GaborData.streak(trial) = 0;
             GaborData.reversal_counter(trial) = 0;
             GaborData.contrast(trial) = GaborData.contrast(1);
             GaborData.ratio(trial) = GaborData.ratio(1);
             GaborData.noise(trial) = GaborData.noise(1);
-            GaborData.step_size(trial) = GaborData.step_size(1);
+            
+            if isequal(GaborData.stair_fn, @Staircase.contrast) % only for the contrast condition
+                if trial == 1
+                    disp(test_step_size);
+                    GaborData.step_size(trial) = GaborData.step_size(trial)*0.6; % multiplicative (in the "easier" direction)
+                    GaborData.min_step_size = 1+(GaborData.step_size(trial) - 1)/4;
+                elseif trial == 1 + GaborData.trials_per_block
+                    disp('reset step size');
+                    disp(trial);
+                    GaborData.step_size(trial) = test_step_size;
+                    disp(test_step_size);
+                    disp(GaborData.step_size(trial));
+                    GaborData.min_step_size = test_min_step_size;
+                    disp(GaborData.min_step_size);
+                    disp(test_min_step_size);
+                else
+                    GaborData.step_size(trial) = test_step_size;
+                end
+            end
+            
+            
+
             if isfield(GaborData, 'iid')
                 GaborData.iid(trial) = GaborData.iid(1);
             end
