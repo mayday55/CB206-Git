@@ -1,4 +1,4 @@
-function grid = PlotSubject(filename, phase, fun, datadir)
+function temporal_kernel = PlotSubject(filename, phase, fun)
 % filename: string, the name of the .mat file
 % phase: 0 or 1, 'contrast' or 'noise'
 
@@ -36,15 +36,15 @@ figure(1)
 for i=1:10
     % disp(size(data.choice(:))); 
     % disp(size(data.ideal_frame_signals(:, 1))); 
-    plot(data.ideal_frame_signals(:, i),data.choice(:), 'd'); hold on;
+    % plot(data.ideal_frame_signals(:, i),data.choice(:), 'd'); hold on;
     [b, ~, stats] = glmfit(data.ideal_frame_signals(:, i),data.choice(:), 'binomial','link',fun); 
-    
+    disp(b);
     temporal_kernel(1:2, i) = b;
     temporal_kernel(3, i) = stats.se(2);
     
     
     logfit = glmval(b, -5.0:5.0, fun); 
-    plot(-5.0:5.0, logfit);
+    %plot(-5.0:5.0, logfit);
     %yfit = glmval(b, data.ideal_frame_signals(:, i), fun);
     %plot(data.ideal_frame_signals(:, i), yfit, 'd');
     xlabel('Frame signal'); ylabel('P(choice=right)');
