@@ -173,24 +173,24 @@ try
             GaborData.ratio(trial) = GaborData.ratio(1);
             GaborData.noise(trial) = GaborData.noise(1);
             
-            if isequal(GaborData.stair_fn, @Staircase.contrast) % only for the contrast condition
-                if trial == 1
-                    disp(test_step_size);
-                    GaborData.step_size(trial) = GaborData.step_size(trial)*0.6; % multiplicative (in the "easier" direction)
-                    GaborData.min_step_size = 1+(GaborData.step_size(trial) - 1)/4;
-                elseif trial == 1 + GaborData.trials_per_block
-                    disp('reset step size');
-                    disp(trial);
-                    GaborData.step_size(trial) = test_step_size;
-                    disp(test_step_size);
-                    disp(GaborData.step_size(trial));
-                    GaborData.min_step_size = test_min_step_size;
-                    disp(GaborData.min_step_size);
-                    disp(test_min_step_size);
-                else
-                    GaborData.step_size(trial) = test_step_size;
-                end
-            end
+%             if isequal(GaborData.stair_fn, @Staircase.contrast) % only for the contrast condition
+%                 if trial == 1
+%                     disp(test_step_size);
+%                     GaborData.step_size(trial) = GaborData.step_size(trial)*0.6; % multiplicative (in the "easier" direction)
+%                     GaborData.min_step_size = 1+(GaborData.step_size(trial) - 1)/4;
+%                 elseif trial == 1 + GaborData.trials_per_block
+%                     disp('reset step size');
+%                     disp(trial);
+%                     GaborData.step_size(trial) = test_step_size;
+%                     disp(test_step_size);
+%                     disp(GaborData.step_size(trial));
+%                     GaborData.min_step_size = test_min_step_size;
+%                     disp(GaborData.min_step_size);
+%                     disp(test_min_step_size);
+%                 else
+%                     GaborData.step_size(trial) = test_step_size;
+%                 end
+%             end
             
             
 

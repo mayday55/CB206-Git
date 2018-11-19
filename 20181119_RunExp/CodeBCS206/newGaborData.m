@@ -54,7 +54,7 @@ GaborData.step_size = zeros(1, total_trials);
 GaborData.model_observer = get_arg('model_observer', '');
 if isequal(GaborData.stair_fn, @Staircase.contrast)
     GaborData.stair_bounds = get_arg('stair_bounds', [0 64]);
-    GaborData.step_size(1) = get_arg('step_size', 2); % multiplicative (in the "easier" direction)
+    GaborData.step_size(1) = get_arg('step_size', 1.5); % multiplicative (in the "easier" direction)
     GaborData.min_step_size = get_arg('min_step_size', 1+(GaborData.step_size(1) - 1)/4); % Default to two 'halvings' of the step size
     GaborData.test_threshold = get_arg('test_threshold', 0);
     GaborData.test_ratio = get_arg('test_ratio', 0.9);
